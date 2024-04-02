@@ -2,8 +2,8 @@ const ffmpeg = require('fluent-ffmpeg');
 const path=require("path")
 const fs = require('fs');
 const speech = require('@google-cloud/speech');
-const ffmpegPath=require('@ffmpeg-qhixh installer/ffmpeg').path
-console.log(ffmpegPath)
+const ffmpegPath=require('@ffmpeg-installer/ffmpeg').path
+
 ffmpeg.setFfmpegPath(ffmpegPath)
 
 function transcribeLocalVideo(filePath) {
