@@ -3,7 +3,9 @@ const path=require("path")
 const fs = require('fs');
 const speech = require('@google-cloud/speech');
 const ffmpegPath=require('@ffmpeg-installer/ffmpeg').path
+const wav = require("wav");
 const voskClient=require('vosk')
+const async = require("async");
 
 ffmpeg.setFfmpegPath(ffmpegPath)
 voskClient.setLogLevel(0)
@@ -26,7 +28,11 @@ async function transcribeAudioToText(audioFilePath){
             return console.log(err)
         }
        const end_of_speech=reco.acceptWaveform(data)
+       console.log(end_of_speech)
        if(end_of_speech){
+        console.log('RESSS DOWN')
+        console.log(reco.result())
+        console.log('RESSS UP')
         console.log(JSON.stringify(reco.result(), null, 4));
        }
        console.log(JSON.stringify(reco.finalResult(reco), null, 4));
@@ -80,15 +86,16 @@ function transcribeLocalVideo(filePath,formatTo) {
   
 
 }
-if (process.argv.length < 3) {
-    console.error('Usage: node script.js <filename>');
-    process.exit(1);
-}
+// if (process.argv.length < 3) {
+//     console.error('Usage: node script.js <filename>');
+//     process.exit(1);
+// }
 
 
-const filePath = process.argv[2];
-const formatTo=process.argv[3]
+// const filePath = process.argv[2];
+// const formatTo=process.argv[3]
 
 
 
-transcribeLocalVideo(filePath,formatTo);
+// transcribeLocalVideo(filePath,formatTo);
+transcribeAudioToText('sanj.wav')
